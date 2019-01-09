@@ -6,9 +6,9 @@ My ContentMy Content
 
 **Contact Name:** ${ContactName}
 
-**Release URL: ** ${VSTSReleaseUrl}
+**Release URL:** ${VSTSReleaseUrl}
 
-**DefinitionId: ** ${VSTSReleaseDefinitionId}
+**DefinitionId:** ${VSTSReleaseDefinitionId}
 
  
 
