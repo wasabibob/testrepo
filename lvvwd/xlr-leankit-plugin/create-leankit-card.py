@@ -29,6 +29,7 @@
 import sys
 from urllib import urlencode
 import com.xhaus.jyson.JysonCodec as json
+import java.text.SimpleDateFormat as sdf
 
 HTTP_SUCCESS = [200, 201]
 
@@ -51,20 +52,50 @@ server_base_url = "https://%s.leankit.com" % ( account_name )
 URI = '/kanban/api/board/%s/AddCard/lane/%s/position/%s?token=%s'   % ( board_id, lane_id, position, access_token )
 URL = "%s%s" % ( server_base_url, URI )
 release_url = releaseVariables['release.url']
+deployment_datetime = releaseVariables['LeankitDeploymentDatetime']
+deployment_date = sdf("MM/dd/yyyy").format(releaseVariables['LeankitDeploymentDatetime'])
+deployment_time = sdf("HH:mm:ss").format(releaseVariables['LeankitDeploymentDatetime'])
+extra_title_mesg = releaseVariables['LeankitExtraTitleMessage']
+items_for_deployment = releaseVariables['LeankitItemsForDeployment']
+description_change_management = releaseVariables['LeankitDescriptionChangeManagement']
+users_change_management_notification = releaseVariables['LeankitUsersChangeManagementNotification']
+point_of_contact = releaseVariables['LeankitPointOfContact']
+requestor = releaseVariables['LeankitRequestor']
+schemas = releaseVariables['LeankitSchemas']
+customer_impact = releaseVariables['LeankitCustomerImpact']
 
 # Variables for the content/body of the message
 card_title = "Testing XL ReleaseR"
 card_description = "Requesting Production Deploy for App XXXX"
 # Body of the http call to the server
 content = {
-            "Title": "Testing XL Release",
-            "Description": "New Deploy Request from XL Release",
+            "Title": "{} {} - {} {}".format(
+                deployment_date, deployment_time, schemas, extra_title_mesg
+            ),
+            "Description": """
+            <b>Deployment Date</b>: {}<br>
+            <b>Deployment Time</b>: {}<br>
+            <b>Items for Deployment</b>:<br>
+            {}<br>
+            <b>Description for IT Change Management Notification</b>:<br>
+            {}<br>
+            <b>Users to be included on the IT Change Management notification</b>:<br>
+            {}<br>
+            <b>Point of Contact</b>: {}<br>
+            <b>Requester</b>: {}<br>
+            <b>Schemas</b>: {}<br>
+            <b>Customer Impact</b>: {}<br>
+            """.format(
+                deployment_date, deployment_time, items_for_deployment, description_change_management,
+                users_change_management_notification, point_of_contact, requestor, schemas,
+                customer_impact
+            ),
             "TypeId": 648315113,
             "Priority": 1 ,
             "Size": "",
             "IsBlocked": "false",
             "BlockReason": "",
-            "DueDate": "01/01/2020",
+            "DueDate": "{}".format(deployment_date),
             "ExternalSystemName": "XL Release",
             "ExternalSystemUrl": release_url,
             "Tags": "",
