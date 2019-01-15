@@ -50,7 +50,7 @@ service_account_password =  None
 server_base_url = "https://%s.leankit.com" % ( account_name )
 URI = '/kanban/api/board/%s/AddCard/lane/%s/position/%s?token=%s'   % ( board_id, lane_id, position, access_token )
 URL = "%s%s" % ( server_base_url, URI )
-release_url = "http://Tonys-MacBook-Pro.local:5516/#/releases/Folder8132528b2bf94f58a25830a0cf3c6636-Release3327942fb0724940b155c3014159780d"
+release_url = releaseVariables['release.url']
 
 # Variables for the content/body of the message
 card_title = "Testing XL ReleaseR"
