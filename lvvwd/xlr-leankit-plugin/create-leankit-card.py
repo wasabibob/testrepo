@@ -51,7 +51,7 @@ service_account_password =  None
 server_base_url = "https://%s.leankit.com" % ( account_name )
 URI = '/kanban/api/board/%s/AddCard/lane/%s/position/%s?token=%s'   % ( board_id, lane_id, position, access_token )
 URL = "%s%s" % ( server_base_url, URI )
-release_url = releaseVariables['release.url']
+release_url = '${release.url}'
 deployment_datetime = releaseVariables['LeankitDeploymentDatetime']
 deployment_date = sdf("MM/dd/yyyy").format(releaseVariables['LeankitDeploymentDatetime'])
 deployment_time = sdf("HH:mm:ss").format(releaseVariables['LeankitDeploymentDatetime'])
