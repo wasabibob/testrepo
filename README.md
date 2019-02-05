@@ -26,5 +26,3 @@
 1. LeankitSchemas
 1. LeankitCustomerImpact
 
-
-[**business_object_save_business_object_v1**](BusinessObjectApi.md#business_object_save_business_object_v1) | **POST** /api/V1/savebusinessobject | Create or Update a Business Object
