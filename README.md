@@ -1,5 +1,6 @@
 # Build Variable Logging
 
+
 **App Name:** ${AppName}  
 **QA Server:** ${DeploymentType}  
 **Contact Name:** ${ContactName}  
